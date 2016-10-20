@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         popupwindowButton = (Button) findViewById(R.id.popupwindow);
-
         popupwindowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,32 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showPopupWindow(View view) {
-        LayoutInflater layoutInflater
-                = (LayoutInflater)getBaseContext()
-                .getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = layoutInflater.inflate(R.layout.popupwindow, null);
-
-        final PopupWindow popupWindow = new PopupWindow(
-                popupView,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        popupWindow.setOutsideTouchable(false); //The window will not dismiss when clicking outside
-
-        Button btnDismiss = (Button)popupView.findViewById(R.id.dismiss);
-        btnDismiss.setOnClickListener(new Button.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                popupWindow.dismiss();
-            }});
-
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0); //Display in the center of the view
-
-    }
-
-    private void showCustomPopupWindow() {
-
+        ShowPopupWindow showPopupWindow = new ShowPopupWindow(MainActivity.this);
+        showPopupWindow.showPopup(view);
     }
 }
